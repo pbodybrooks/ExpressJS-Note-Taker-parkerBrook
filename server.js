@@ -1,6 +1,7 @@
 // requirements
 const PORT = 3001;
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const notesDB = require('./db/db.json');
 
@@ -37,8 +38,24 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-// create new note
+// generate a new note object
+function generateNote (title, text) {
+    const newNote = {
+      id: uuidv4(),
+      title: title,
+      text: text
+    };
 
+    notesDB.push(newNote);
+
+    fs.watchFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify(notesDB, null, 2)
+    );
+
+    return newNote;
+}
+  
 // BONUS - delete note
 
 
