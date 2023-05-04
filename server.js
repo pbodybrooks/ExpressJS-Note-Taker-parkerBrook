@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const notesDB = require('./db/db.json');
 
+
 // import express
 const express = require('express');
 // create express instance
 const app = express();
 
-// middleware
+// middleware - set up express to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
@@ -22,20 +23,23 @@ app.get('/', (req, res) => {
 });
 
 // wildcard to handle all non-specified endpoints with index.html
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, './public/index.html'));
+// });
 
 // respond with notes.html when a user visits the notes page
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
+// reponds with JSON string of notes database
+app.get('/api/notes', (req, res) => {
+    res.json(notesDB);
+});
 
+// create new note
 
-
-
-
+// BONUS - delete note
 
 
 // listen 
