@@ -1,6 +1,7 @@
 // requirements
 const PORT = 3001;
 const fs = require('fs');
+// uuid for assigning unique id to each note to be used for deletion
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const notesDB = require('./db/db.json');
@@ -56,15 +57,45 @@ function generateNote (title, text) {
     return newNote;
 }
 
+// handle post requests to api/notes endpoint to add a new note
 app.post('/api/notes', (req, res) => {
     const newNote = generateNote(req.body.title, req.body.text);
     res.json(newNote);
 });
   
-// BONUS - delete note
+// BONUS - delete existing note
+function deleteNote (id) {
+    // find the index of the note for a given ID
+    const noteIndex = notesDB.findIndex(note => note.id === id);
+  
+    // if found, remove from notes array
+    if (noteIndex >= 0) {
+      notesDB.splice(noteIndex, 1);
+  
+      // write notesDB to db.json file
+      fs.writeFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify(notesDB, null, 2)
+      );
+  
+      return true;
+    } else {
+      return false;
+    }
+}
 
+// handle delete requests to api/notes/:id endpoint to delete a note
+app.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id;
+    const deleted = deleteNote(id);
+    if (deleted) {
+      res.status(204).send();
+    } else {
+      res.status(404).send();
+    }
+});
 
-// listen 
+// listen for requests
 app.listen(PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)
 );
