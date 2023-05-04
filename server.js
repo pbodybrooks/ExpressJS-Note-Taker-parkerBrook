@@ -1,5 +1,5 @@
 // requirements
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 // uuid for assigning unique id to each note to be used for deletion
 const { v4: uuidv4 } = require('uuid');
