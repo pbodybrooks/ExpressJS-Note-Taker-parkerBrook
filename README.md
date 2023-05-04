@@ -15,7 +15,7 @@ This project features a note-taking application that allows users to enter a new
 * [Questions](#questions)
 
 ## Deployed Application
-[Deployed Application](https://express-note-taker-parkerbrook.herokuapp.com/)
+[Express Note Taker](https://express-note-taker-parkerbrook.herokuapp.com/)
 
 ## Screenshot
 ![Screenshot of app.](/assets/images/screenshot.png)
