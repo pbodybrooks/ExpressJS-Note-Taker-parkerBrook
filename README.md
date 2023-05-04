@@ -1,7 +1,7 @@
 # ExpressJS Note Taker ![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 ## Description 
-This project features a note-taking application that allows users to enter a new note consisting of a note title and note text. Notes can be saved and will appear in the left column once the save icon is clicked. It also features note-delete functionality as well to allow users to delete old, unused, or unwanted notes. The application uses express for handling of routes, fs for the writing of files, and uuids to assign unique ids to each note, allowing us to delete them.
+This project features a note-taking application that allows users to enter a new note consisting of a note title and note text. Notes can be saved and will appear in the left column once the save icon is clicked. It also features note-delete functionality as well to allow users to delete old, unused, or unwanted notes. 
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ N/A
 This application is covered under the [MIT](https://opensource.org/licenses/MIT) license.
 
 ## Features 
-Heavily features the use of Node and Express.
+This application uses node, express for handling of routes, fs for the writing of files, and uuids to assign unique ids to each note, allowing users to delete them. It also features mock-usage of a database by using a JSON file to store notes.
 
 ## Contributing 
 N/A
