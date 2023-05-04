@@ -48,7 +48,7 @@ function generateNote (title, text) {
 
     notesDB.push(newNote);
 
-    fs.watchFileSync(
+    fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
         JSON.stringify(notesDB, null, 2)
     );
