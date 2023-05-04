@@ -55,6 +55,11 @@ function generateNote (title, text) {
 
     return newNote;
 }
+
+app.post('/api/notes', (req, res) => {
+    const newNote = generateNote(req.body.title, req.body.text);
+    res.json(newNote);
+});
   
 // BONUS - delete note
 
