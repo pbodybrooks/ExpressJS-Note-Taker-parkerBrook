@@ -22,11 +22,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-// wildcard to handle all non-specified endpoints with index.html
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, './public/index.html'));
-// });
-
 // respond with notes.html when a user visits the notes page
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
@@ -35,6 +30,11 @@ app.get('/notes', (req, res) => {
 // reponds with JSON string of notes database
 app.get('/api/notes', (req, res) => {
     res.json(notesDB);
+});
+
+// wildcard to handle all non-specified endpoints with index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 // create new note
